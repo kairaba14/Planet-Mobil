@@ -1,0 +1,285 @@
+@import "tailwindcss";
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+/* Tailwind CSS v4 Theme Configuration */
+@theme {
+  /* Container */
+  --default-container-center: true;
+  --default-container-padding: 2rem;
+  --breakpoint-2xl: 1400px;
+  
+  /* Radius using existing variables */
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+  
+  /* Custom Planet Mobil colors */
+  --color-planet-black: var(--planet-black);
+  --color-planet-gold: var(--planet-gold);
+  --color-planet-gold-light: var(--planet-gold-light);
+  --color-planet-gold-dark: var(--planet-gold-dark);
+  --color-planet-white: var(--planet-white);
+  --color-planet-gray: var(--planet-gray);
+  --color-planet-gray-light: var(--planet-gray-light);
+
+  /* Animations */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-fade-in: fadeIn 0.6s ease-out;
+  --animate-slide-up: slideUp 0.6s ease-out;
+  --animate-slide-in-left: slideInLeft 0.6s ease-out;
+  --animate-slide-in-right: slideInRight 0.6s ease-out;
+  --animate-scale-in: scaleIn 0.4s ease-out;
+  --animate-float: float 3s ease-in-out infinite;
+  --animate-glow: glow 2s ease-in-out infinite alternate;
+}
+
+/* Keyframes for animations */
+@keyframes accordion-down {
+  from { height: 0; }
+  to { height: var(--radix-accordion-content-height); }
+}
+
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to { height: 0; }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+  0% { opacity: 0; transform: translateX(-40px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  0% { opacity: 0; transform: translateX(40px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+  0% { opacity: 0; transform: scale(0.9); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 20px hsl(var(--planet-gold) / 0.3); }
+  100% { box-shadow: 0 0 40px hsl(var(--planet-gold) / 0.6); }
+}
+
+@layer base {
+  :root {
+    /* Corporate color scheme: Black, Gold, White */
+    --background: 28 100% 97%;
+    --foreground: 0 0% 5%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 5%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 5%;
+
+    --primary: 0 0% 8%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 45 100% 50%;
+    --secondary-foreground: 0 0% 8%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 45 95% 55%;
+    --accent-foreground: 0 0% 8%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 45 95% 55%;
+
+    --radius: 0.75rem;
+
+    /* Custom Planet Mobil Design Tokens */
+    --planet-black: 0 0% 8%;
+    --planet-gold: 45 95% 55%;
+    --planet-gold-light: 45 100% 65%;
+    --planet-gold-dark: 45 85% 45%;
+    --planet-white: 0 0% 98%;
+    --planet-gray: 0 0% 15%;
+    --planet-gray-light: 0 0% 45%;
+    
+    /* Gradients */
+    --gradient-gold: linear-gradient(135deg, hsl(var(--planet-gold)), hsl(var(--planet-gold-light)));
+    --gradient-dark: linear-gradient(135deg, hsl(var(--planet-black)), hsl(var(--planet-gray)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--planet-black) / 0.9), hsl(var(--planet-gray) / 0.8));
+    
+    /* Shadows */
+    --shadow-gold: 0 10px 40px hsl(var(--planet-gold) / 0.2);
+    --shadow-elegant: 0 20px 60px hsl(var(--planet-black) / 0.1);
+    --shadow-card: 0 4px 20px hsl(var(--planet-black) / 0.05);
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    /* Sidebar variables */
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 0 0% 5%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 8%;
+
+    --secondary: 45 95% 55%;
+    --secondary-foreground: 0 0% 8%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 45 100% 65%;
+    --accent-foreground: 0 0% 8%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 45 95% 55%;
+
+    /* Dark mode adjustments */
+    --planet-white: 0 0% 5%;
+    --planet-black: 0 0% 98%;
+    --shadow-card: 0 4px 20px hsl(var(--planet-black) / 0.1);
+    --shadow-elegant: 0 20px 60px hsl(var(--planet-black) / 0.2);
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Custom component classes */
+  .gradient-gold {
+    background: var(--gradient-gold);
+  }
+  
+  .gradient-dark {
+    background: var(--gradient-dark);
+  }
+  
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+  
+  .shadow-gold {
+    box-shadow: var(--shadow-gold);
+  }
+  
+  .shadow-elegant {
+    box-shadow: var(--shadow-elegant);
+  }
+  
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+  
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+  
+  .transition-bounce {
+    transition: var(--transition-bounce);
+  }
+
+  .btn-gold {
+    background-color: hsl(var(--secondary));
+    color: hsl(var(--secondary-foreground));
+    box-shadow: var(--shadow-gold);
+    transition: var(--transition-smooth);
+  }
+  
+  .btn-gold:hover {
+    background-color: hsl(var(--accent));
+  }
+
+  .btn-dark {
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    transition: var(--transition-smooth);
+  }
+  
+  .btn-dark:hover {
+    background-color: hsl(0 0% 20%);
+  }
+
+  /* Hover variant for gradient gold text */
+  .hover\:text-gradient-gold:hover {
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+@layer utilities {
+  .text-white {
+    color: #302a2a;
+  }
+  .text-gray-300 {
+    color: var(--color-gray-800);
+  }
+}
